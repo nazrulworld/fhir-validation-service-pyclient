@@ -17,10 +17,10 @@ jobs:
     env:
       FVS_TAG: "1.0.0"
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           repository: nazrulworld/fhir-validation-service
           ref: v1.0.0
