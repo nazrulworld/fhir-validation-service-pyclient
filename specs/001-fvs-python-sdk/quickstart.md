@@ -186,4 +186,4 @@ cd /tmp/fvs && docker compose down -v
 **Findings:**
 
 - **R13 confirmed**: FVS splits `profile` on both a literal `,` and `%2C`. Two core profiles in one call are both applied.
-- **Upstream difference**: FVS 1.0.0 answers `400 unknown-profile` for a core-spec profile given as `url|version` (for example `http://hl7.org/fhir/StructureDefinition/Patient|4.0.1`, even alone), although the OpenAPI `profile` description says `url|version` is matched. The SDK passes the value through unchanged. The integration test now uses two distinct core URLs. This is worth reporting upstream.
+- **Upstream difference**: FVS 1.0.0 answers `400 unknown-profile` for a core-spec profile given as `url|version` (for example `http://hl7.org/fhir/StructureDefinition/Patient|4.0.1`, even alone), although the OpenAPI `profile` description says `url|version` is matched. The SDK passes the value through unchanged. The integration test now uses two distinct core URLs. Reported upstream as [nazrulworld/fhir-validation-service#114](https://github.com/nazrulworld/fhir-validation-service/issues/114).
