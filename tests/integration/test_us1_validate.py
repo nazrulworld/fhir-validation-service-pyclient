@@ -56,7 +56,8 @@ def test_comma_separated_profiles_are_split_by_the_server(it_client: Client) -> 
     """Research R13: profiles are sent comma-joined (as %2C); the server must split them.
 
     Two distinct core URLs are used: FVS 1.0.0 does not resolve ``url|version`` for
-    core-spec profiles (``Patient|4.0.1`` is ``unknown-profile`` even on its own).
+    core-spec profiles (``Patient|4.0.1`` is ``unknown-profile`` even on its own); see
+    https://github.com/nazrulworld/fhir-validation-service/issues/114.
     """
     patient = "http://hl7.org/fhir/StructureDefinition/Patient"
     resource = "http://hl7.org/fhir/StructureDefinition/Resource"
