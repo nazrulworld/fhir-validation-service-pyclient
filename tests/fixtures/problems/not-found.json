@@ -1,0 +1,7 @@
+{
+  "type": "https://nazrulworld.github.io/fhir-validation-service/problems/not-found",
+  "title": "Not found",
+  "status": 404,
+  "correlationId": "corr-0010",
+  "detail": "No endpoint matches the request path"
+}

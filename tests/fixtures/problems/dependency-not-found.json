@@ -1,0 +1,7 @@
+{
+  "type": "https://nazrulworld.github.io/fhir-validation-service/problems/dependency-not-found",
+  "title": "Dependency not found",
+  "status": 424,
+  "correlationId": "corr-0021",
+  "detail": "A dependency of the requested IG package is not available."
+}

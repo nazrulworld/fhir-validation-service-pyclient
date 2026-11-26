@@ -1,0 +1,6 @@
+{
+  "type": "https://nazrulworld.github.io/fhir-validation-service/problems/method-not-allowed",
+  "title": "Method not allowed",
+  "status": 405,
+  "correlationId": "corr-0012"
+}

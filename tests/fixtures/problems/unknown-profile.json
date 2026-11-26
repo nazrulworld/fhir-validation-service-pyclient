@@ -1,0 +1,10 @@
+{
+  "type": "https://nazrulworld.github.io/fhir-validation-service/problems/unknown-profile",
+  "title": "Unknown profile",
+  "status": 400,
+  "correlationId": "corr-0004",
+  "detail": "A requested profile is not available",
+  "unresolvedProfiles": [
+    "http://example.org/StructureDefinition/nope"
+  ]
+}

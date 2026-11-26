@@ -1,0 +1,7 @@
+{
+  "type": "https://nazrulworld.github.io/fhir-validation-service/problems/conflict",
+  "title": "Conflict",
+  "status": 409,
+  "correlationId": "corr-0014",
+  "detail": "Another organisation already stored this name#version"
+}

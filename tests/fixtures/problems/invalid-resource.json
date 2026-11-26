@@ -1,0 +1,14 @@
+{
+  "type": "https://nazrulworld.github.io/fhir-validation-service/problems/invalid-resource",
+  "title": "Invalid resource",
+  "status": 400,
+  "correlationId": "corr-0002",
+  "detail": "The request body is not a FHIR resource",
+  "issues": [
+    {
+      "severity": "FATAL",
+      "location": "(document)",
+      "message": "Unable to parse JSON: unexpected end of input"
+    }
+  ]
+}

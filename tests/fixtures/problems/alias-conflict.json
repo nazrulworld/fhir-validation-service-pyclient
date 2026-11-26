@@ -1,0 +1,7 @@
+{
+  "type": "https://nazrulworld.github.io/fhir-validation-service/problems/alias-conflict",
+  "title": "Alias conflict",
+  "status": 409,
+  "correlationId": "corr-0015",
+  "detail": "Another two-IG context already starts with the same IG"
+}

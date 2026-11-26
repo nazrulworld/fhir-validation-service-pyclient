@@ -1,0 +1,8 @@
+<OperationOutcome xmlns="http://hl7.org/fhir">
+  <issue>
+    <severity value="error"/>
+    <code value="processing"/>
+    <diagnostics value="Unknown code 'http://hl7.org/fhir/administrative-gender#unknown-value'"/>
+    <expression value="Patient.gender"/>
+  </issue>
+</OperationOutcome>

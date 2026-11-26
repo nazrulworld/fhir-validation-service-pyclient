@@ -1,0 +1,7 @@
+{
+  "type": "https://nazrulworld.github.io/fhir-validation-service/problems/package-too-large",
+  "title": "Package too large",
+  "status": 413,
+  "correlationId": "corr-0016",
+  "detail": "The validator context would not fit in this instance's heap"
+}

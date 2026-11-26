@@ -1,0 +1,7 @@
+{
+  "type": "https://nazrulworld.github.io/fhir-validation-service/problems/package-unsafe",
+  "title": "Package unsafe",
+  "status": 422,
+  "correlationId": "corr-0019",
+  "detail": "The archive was refused for safety"
+}

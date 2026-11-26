@@ -1,0 +1,7 @@
+{
+  "type": "https://nazrulworld.github.io/fhir-validation-service/problems/overloaded",
+  "title": "Overloaded",
+  "status": 503,
+  "correlationId": "corr-0025",
+  "detail": "The instance is at its admission limit"
+}

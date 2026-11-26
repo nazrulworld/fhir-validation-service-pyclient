@@ -1,0 +1,10 @@
+{
+  "status": "success",
+  "name": "hl7.fhir.uv.ips",
+  "version": "1.1.0",
+  "requestedVersion": "latest",
+  "downloaded": true,
+  "owner": "acme",
+  "shareable": true,
+  "warnings": []
+}

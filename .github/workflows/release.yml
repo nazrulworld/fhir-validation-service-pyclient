@@ -1,0 +1,115 @@
+name: Release
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    uses: ./.github/workflows/ci.yml
+
+  integration:
+    uses: ./.github/workflows/integration.yml
+    secrets: inherit  # without them, integration.yml falls back to generated keys
+
+  build:
+    needs: [test, integration]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: astral-sh/setup-uv@v6
+        with:
+          python-version: "3.11"
+      - run: uv build
+      - run: uvx twine check --strict dist/*
+      - run: uv run --no-project python scripts/check_dist.py dist/
+      - name: Tag matches the built version
+        run: |
+          test -f "dist/fvs_client-${GITHUB_REF_NAME#v}-py3-none-any.whl" \
+            || { echo "tag ${GITHUB_REF_NAME} does not match the built version"; ls dist; exit 1; }
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist/
+
+  testpypi:
+    needs: build
+    runs-on: ubuntu-latest
+    environment: testpypi
+    permissions:
+      id-token: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist/
+      - uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          repository-url: https://test.pypi.org/legacy/
+          attestations: true
+
+  smoke:
+    needs: testpypi
+    runs-on: ubuntu-latest
+    steps:
+      - uses: astral-sh/setup-uv@v6
+        with:
+          python-version: "3.11"
+      - name: Install from TestPyPI into a clean Python 3.11 environment
+        run: |
+          VERSION="${GITHUB_REF_NAME#v}"
+          uv venv /tmp/smoke --python 3.11
+          for i in 1 2 3 4 5 6; do
+            uv pip install --python /tmp/smoke \
+              --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple/ \
+              --index-strategy unsafe-best-match "fvs_client==${VERSION}" && break
+            sleep 20
+          done
+          /tmp/smoke/bin/python -c "import fvs_client, sys; assert fvs_client.__version__ == sys.argv[1]" "$VERSION"
+
+  pypi:
+    needs: smoke
+    runs-on: ubuntu-latest
+    environment: pypi
+    permissions:
+      id-token: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist/
+      - uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          attestations: true
+
+  github-release:
+    needs: pypi
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist/
+      - name: Extract release notes from CHANGELOG.md
+        run: |
+          VERSION="${GITHUB_REF_NAME#v}"
+          awk -v v="$VERSION" '
+            $0 ~ "^## \\[" v "\\]" {on=1; next}
+            on && /^## \[/ {exit}
+            on {print}
+          ' CHANGELOG.md > notes.md
+          test -s notes.md || { echo "No CHANGELOG.md section for ${VERSION}"; exit 1; }
+      - env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          PRE=""
+          case "$GITHUB_REF_NAME" in *a*|*b*|*rc*) PRE="--prerelease";; esac
+          gh release create "$GITHUB_REF_NAME" dist/* --title "$GITHUB_REF_NAME" --notes-file notes.md $PRE

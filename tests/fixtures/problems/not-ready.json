@@ -1,0 +1,7 @@
+{
+  "type": "https://nazrulworld.github.io/fhir-validation-service/problems/not-ready",
+  "title": "Not ready",
+  "status": 503,
+  "correlationId": "corr-0024",
+  "detail": "The validator context is still being built"
+}

@@ -1,0 +1,7 @@
+{
+  "type": "https://nazrulworld.github.io/fhir-validation-service/problems/tx-registry-unavailable",
+  "title": "Terminology registry unavailable",
+  "status": 503,
+  "correlationId": "corr-0026",
+  "detail": "The HL7 terminology registry list was never obtained"
+}

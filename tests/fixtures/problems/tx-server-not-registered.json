@@ -1,0 +1,7 @@
+{
+  "type": "https://nazrulworld.github.io/fhir-validation-service/problems/tx-server-not-registered",
+  "title": "Terminology server not registered",
+  "status": 400,
+  "correlationId": "corr-0007",
+  "detail": "The terminology server is not on the allowlist"
+}

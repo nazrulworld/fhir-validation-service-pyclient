@@ -1,0 +1,41 @@
+{
+  "status": "success",
+  "fhirVersion": "R4",
+  "key": {
+    "fhirVersion": "R4",
+    "igPackage": "a.ig#1.0.0|b.ig#2.0.0"
+  },
+  "igPackages": [
+    {
+      "igPackageId": "a.ig",
+      "igPackageVersion": "1.0.0",
+      "requestedVersion": "1.0.0"
+    },
+    {
+      "igPackageId": "b.ig",
+      "igPackageVersion": "2.0.0",
+      "requestedVersion": "latest"
+    }
+  ],
+  "aliases": [
+    "b.ig#2.0.0|a.ig#1.0.0",
+    "a.ig#1.0.0"
+  ],
+  "revision": 43,
+  "included": [
+    "a.ig#1.0.0|b.ig#2.0.0"
+  ],
+  "resolved": [
+    "a.ig#1.0.0",
+    "b.ig#2.0.0",
+    "hl7.fhir.r4.core#4.0.1"
+  ],
+  "terminology": {
+    "mode": "none"
+  },
+  "owner": "acme",
+  "shareable": false,
+  "warnings": [
+    "hl7.terminology.r4: using 6.0.0 (b.ig needs 6.0.0, a.ig needs 5.0.0)"
+  ]
+}

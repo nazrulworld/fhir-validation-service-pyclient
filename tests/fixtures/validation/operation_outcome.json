@@ -1,0 +1,35 @@
+{
+  "resourceType": "OperationOutcome",
+  "issue": [
+    {
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line",
+          "valueInteger": 1
+        },
+        {
+          "url": "http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col",
+          "valueInteger": 65
+        }
+      ],
+      "severity": "error",
+      "code": "processing",
+      "diagnostics": "Unknown code 'http://hl7.org/fhir/administrative-gender#unknown-value'",
+      "location": [
+        "Patient.gender",
+        "Line[1] Col[65]"
+      ],
+      "expression": [
+        "Patient.gender"
+      ]
+    },
+    {
+      "severity": "warning",
+      "code": "invariant",
+      "diagnostics": "Constraint failed: dom-6",
+      "expression": [
+        "Patient"
+      ]
+    }
+  ]
+}

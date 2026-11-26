@@ -1,0 +1,7 @@
+{
+  "type": "https://nazrulworld.github.io/fhir-validation-service/problems/not-acceptable",
+  "title": "Not acceptable",
+  "status": 406,
+  "correlationId": "corr-0013",
+  "detail": "Accept asks for a format the endpoint can't produce"
+}

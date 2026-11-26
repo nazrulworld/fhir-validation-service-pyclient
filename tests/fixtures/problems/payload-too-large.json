@@ -1,0 +1,7 @@
+{
+  "type": "https://nazrulworld.github.io/fhir-validation-service/problems/payload-too-large",
+  "title": "Payload too large",
+  "status": 413,
+  "correlationId": "corr-0017",
+  "detail": "The request body is larger than 20 MB"
+}
