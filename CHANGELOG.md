@@ -8,7 +8,7 @@ breaking changes can happen in any minor release and are marked **BREAKING**.
 
 ## [Unreleased]
 
-## [0.1.0] - Unreleased
+## [0.1.0] - 2026-11-26
 
 First release, supporting FHIR Validation Service API **1.0.x** on Python **3.11–3.15**. Specification:
 [`specs/001-fvs-python-sdk/spec.md`](specs/001-fvs-python-sdk/spec.md).
