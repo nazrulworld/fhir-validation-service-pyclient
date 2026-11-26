@@ -33,6 +33,7 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     permissions:
+      actions: read  # deploy-pages reads the build job's Pages artifact
       pages: write
       id-token: write
     environment:
