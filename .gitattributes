@@ -1,0 +1,6 @@
+# Normalise text to LF in the repository and in every checkout (including Windows).
+* text=auto eol=lf
+
+# Byte-exact files: the pinned OpenAPI snapshots are verified by SHA-256.
+tests/contract/fvs-openapi-v1.0.0.yaml -text
+specs/001-fvs-python-sdk/contracts/fvs-openapi-v1.0.0.yaml -text
