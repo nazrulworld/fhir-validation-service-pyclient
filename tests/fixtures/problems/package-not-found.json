@@ -1,0 +1,7 @@
+{
+  "type": "https://nazrulworld.github.io/fhir-validation-service/problems/package-not-found",
+  "title": "Package not found",
+  "status": 404,
+  "correlationId": "corr-0011",
+  "detail": "IG package no.such.ig#1.0.0 is not stored"
+}

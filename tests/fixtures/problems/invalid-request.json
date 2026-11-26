@@ -1,0 +1,7 @@
+{
+  "type": "https://nazrulworld.github.io/fhir-validation-service/problems/invalid-request",
+  "title": "Invalid request",
+  "status": 400,
+  "correlationId": "corr-0001",
+  "detail": "The ig parameter is malformed"
+}

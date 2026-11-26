@@ -1,0 +1,7 @@
+{
+  "type": "https://nazrulworld.github.io/fhir-validation-service/problems/forbidden",
+  "title": "Forbidden",
+  "status": 403,
+  "correlationId": "corr-0009",
+  "detail": "The API key's role doesn't allow this operation"
+}

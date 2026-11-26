@@ -1,0 +1,8 @@
+{
+  "status": "success",
+  "fhirVersion": "R4",
+  "revision": 44,
+  "excluded": "hl7.fhir.uv.ips#1.1.0",
+  "included": [],
+  "warnings": []
+}

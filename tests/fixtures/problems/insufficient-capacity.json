@@ -1,0 +1,6 @@
+{
+  "type": "https://nazrulworld.github.io/fhir-validation-service/problems/insufficient-capacity",
+  "title": "Insufficient capacity",
+  "status": 503,
+  "correlationId": "corr-0027"
+}

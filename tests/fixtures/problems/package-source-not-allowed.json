@@ -1,0 +1,7 @@
+{
+  "type": "https://nazrulworld.github.io/fhir-validation-service/problems/package-source-not-allowed",
+  "title": "Package source not allowed",
+  "status": 400,
+  "correlationId": "corr-0006",
+  "detail": "The download host is not allowed"
+}

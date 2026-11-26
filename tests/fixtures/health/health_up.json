@@ -1,0 +1,96 @@
+{
+  "status": "UP",
+  "timestamp": 1761465600000,
+  "postgres": {
+    "status": "UP",
+    "responseTime": 3
+  },
+  "readiness": {
+    "status": "UP",
+    "timestamp": 1761465600000,
+    "catalogRevision": 45,
+    "versions": {
+      "R4": {
+        "appliedRevision": 45,
+        "latestRevision": 45,
+        "base": {
+          "state": "ACTIVE",
+          "packages": 3,
+          "packageBytes": 40123456
+        },
+        "contexts": [
+          {
+            "key": "hl7.fhir.uv.ips#1.1.0",
+            "igPackages": [
+              "hl7.fhir.uv.ips#1.1.0"
+            ],
+            "aliases": [],
+            "kind": "pinned",
+            "state": "ACTIVE",
+            "appliedRevision": 45,
+            "packages": 5,
+            "packageBytes": 51234567,
+            "lastUsed": 1761465600000,
+            "terminology": {
+              "mode": "server",
+              "server": "https://tx.fhir.org/r4"
+            }
+          }
+        ],
+        "privateContexts": {
+          "count": 1,
+          "states": {
+            "ACTIVE": 1,
+            "BUILDING": 0,
+            "STALE": 0,
+            "ABSENT": 0
+          }
+        }
+      }
+    },
+    "reasons": []
+  },
+  "terminology": {
+    "registry": "https://ecosystem.hl7.org/tx-reg",
+    "allowlist": {
+      "R4": {
+        "source": "registry",
+        "fetchedAt": "2026-11-25T10:00:00Z",
+        "registryLastUpdate": "2026-11-20T00:00:00Z",
+        "servers": 12
+      },
+      "R5": {
+        "source": "built-in",
+        "fetchedAt": null,
+        "registryLastUpdate": null,
+        "servers": 2,
+        "reason": "registry unreachable"
+      }
+    }
+  },
+  "fhirVersions": {
+    "served": [
+      "R4",
+      "R5"
+    ],
+    "inactiveContexts": {
+      "count": 2,
+      "private": 1,
+      "items": [
+        {
+          "fhirVersion": "STU3",
+          "igPackage": "old.ig#0.9.0",
+          "igPackages": [
+            "old.ig#0.9.0"
+          ],
+          "aliases": [],
+          "owner": "acme",
+          "reason": "fhir-version-disabled"
+        }
+      ]
+    }
+  },
+  "security": {
+    "aclSecurity": "enabled"
+  }
+}

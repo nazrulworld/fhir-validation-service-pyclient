@@ -1,0 +1,7 @@
+{
+  "type": "https://nazrulworld.github.io/fhir-validation-service/problems/fhir-version-disabled",
+  "title": "FHIR version disabled",
+  "status": 422,
+  "correlationId": "corr-0020",
+  "detail": "IG validator contexts for R5 can't be added: this service serves R4 only (FV_ENABLED_FHIR_VERSIONS)"
+}

@@ -1,0 +1,10 @@
+{
+  "type": "https://nazrulworld.github.io/fhir-validation-service/problems/rate-limited",
+  "title": "Too many requests",
+  "status": 429,
+  "correlationId": "corr-0022",
+  "detail": "This API key's rate limit of 5 validation requests per minute was reached; retry after 61 s",
+  "scope": "key",
+  "limit": 5,
+  "retryAfterSeconds": 61
+}

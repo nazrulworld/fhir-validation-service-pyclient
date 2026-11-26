@@ -1,0 +1,65 @@
+name: Integration
+
+on:
+  pull_request:
+  schedule:
+    - cron: "17 3 * * *"
+  workflow_call:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  integration:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      FVS_TAG: "1.0.0"
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/checkout@v4
+        with:
+          repository: nazrulworld/fhir-validation-service
+          ref: v1.0.0
+          path: fvs
+      - name: Write service .env (repository secrets, or generated keys)
+        working-directory: fvs
+        env:
+          SECRET_ADMIN_KEY: ${{ secrets.FVS_IT_ADMIN_API_KEY }}
+          SECRET_VALIDATOR_KEY: ${{ secrets.FVS_IT_API_KEY }}
+        run: |
+          gen() { openssl rand -hex 32; }
+          PG="$(gen)"
+          ADMIN="${SECRET_ADMIN_KEY:-$(gen)}"
+          VALIDATOR="${SECRET_VALIDATOR_KEY:-$(gen)}"
+          cp .env.example .env
+          sed -i -e "s|^PG_PASSWORD=.*|PG_PASSWORD=${PG}|" \
+                 -e "s|^FV_PG_PASSWORD=.*|FV_PG_PASSWORD=${PG}|" \
+                 -e "s|^FV_ADMIN_API_KEY=.*|FV_ADMIN_API_KEY=${ADMIN}|" \
+                 -e "s|^FV_VALIDATOR_API_KEY=.*|FV_VALIDATOR_API_KEY=${VALIDATOR}|" .env
+          echo "::add-mask::${ADMIN}"
+          echo "::add-mask::${VALIDATOR}"
+          echo "FVS_IT_ADMIN_API_KEY=${ADMIN}" >> "$GITHUB_ENV"
+          echo "FVS_IT_API_KEY=${VALIDATOR}" >> "$GITHUB_ENV"
+      - name: Start FHIR Validation Service
+        working-directory: fvs
+        run: docker compose up -d --wait
+      - uses: astral-sh/setup-uv@v6
+        with:
+          python-version: "3.12"
+      - run: uv sync --group test --locked
+      - name: Integration tests
+        env:
+          FVS_IT_BASE_URL: http://127.0.0.1:8880
+        run: uv run pytest -m integration -p no:cacheprovider
+      - name: Service logs on failure
+        if: failure()
+        working-directory: fvs
+        run: docker compose logs --tail=300
+      - name: Stop service
+        if: always()
+        working-directory: fvs
+        run: docker compose down -v

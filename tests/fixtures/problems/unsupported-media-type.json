@@ -1,0 +1,7 @@
+{
+  "type": "https://nazrulworld.github.io/fhir-validation-service/problems/unsupported-media-type",
+  "title": "Unsupported media type",
+  "status": 415,
+  "correlationId": "corr-0018",
+  "detail": "Content-Type text/plain is not accepted"
+}

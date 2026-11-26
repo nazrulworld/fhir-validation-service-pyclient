@@ -1,0 +1,15 @@
+{
+  "valid": true,
+  "messages": [
+    {
+      "severity": "WARNING",
+      "location": "Patient",
+      "message": "Constraint failed: dom-6: 'A resource should have narrative for robust management' (defined in http://hl7.org/fhir/StructureDefinition/DomainResource) (Best Practice Recommendation)"
+    }
+  ],
+  "fhirVersion": "R4",
+  "appliedProfiles": [],
+  "igPackage": null,
+  "igOwner": "system",
+  "igShareable": true
+}

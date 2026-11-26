@@ -1,0 +1,13 @@
+{
+  "status": "success",
+  "fhirVersion": "R4",
+  "igPackage": "hl7.fhir.uv.ips#1.1.0",
+  "revision": 45,
+  "owner": "acme",
+  "shareable": true,
+  "terminology": {
+    "mode": "server",
+    "server": "https://tx.fhir.org/r4"
+  },
+  "warnings": []
+}

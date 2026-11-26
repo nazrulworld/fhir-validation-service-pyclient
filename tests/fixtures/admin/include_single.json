@@ -1,0 +1,32 @@
+{
+  "status": "success",
+  "fhirVersion": "R4",
+  "key": {
+    "fhirVersion": "R4",
+    "igPackage": "hl7.fhir.uv.ips#1.1.0"
+  },
+  "igPackages": [
+    {
+      "igPackageId": "hl7.fhir.uv.ips",
+      "igPackageVersion": "1.1.0"
+    }
+  ],
+  "aliases": [],
+  "requestedVersion": "1.1.x",
+  "revision": 42,
+  "included": [
+    "hl7.fhir.uv.ips#1.1.0"
+  ],
+  "resolved": [
+    "hl7.fhir.uv.ips#1.1.0",
+    "hl7.fhir.r4.core#4.0.1",
+    "hl7.terminology.r4#5.0.0"
+  ],
+  "terminology": {
+    "mode": "server",
+    "server": "https://tx.fhir.org/r4"
+  },
+  "owner": "acme",
+  "shareable": true,
+  "warnings": []
+}

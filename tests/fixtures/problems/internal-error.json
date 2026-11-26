@@ -1,0 +1,7 @@
+{
+  "type": "https://nazrulworld.github.io/fhir-validation-service/problems/internal-error",
+  "title": "Internal error",
+  "status": 500,
+  "correlationId": "corr-0023",
+  "detail": "An unexpected error occurred"
+}

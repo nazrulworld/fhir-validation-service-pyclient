@@ -1,0 +1,8 @@
+fvs_client - Python SDK for the FHIR Validation Service
+Copyright 2026 The fvs_client contributors
+
+This product includes software developed by the fvs_client contributors.
+Licensed under the Apache License, Version 2.0 (see LICENSE).
+
+"FHIR" and "HL7" are registered trademarks of Health Level Seven International.
+This project is not affiliated with or endorsed by HL7.

@@ -1,0 +1,6 @@
+{
+  "type": "https://nazrulworld.github.io/fhir-validation-service/problems/unauthorized",
+  "title": "Unauthorized",
+  "status": 401,
+  "correlationId": "corr-0008"
+}

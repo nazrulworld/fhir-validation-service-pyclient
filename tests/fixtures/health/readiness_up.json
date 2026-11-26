@@ -1,0 +1,45 @@
+{
+  "status": "UP",
+  "timestamp": 1761465600000,
+  "catalogRevision": 45,
+  "versions": {
+    "R4": {
+      "appliedRevision": 45,
+      "latestRevision": 45,
+      "base": {
+        "state": "ACTIVE",
+        "packages": 3,
+        "packageBytes": 40123456
+      },
+      "contexts": [
+        {
+          "key": "hl7.fhir.uv.ips#1.1.0",
+          "igPackages": [
+            "hl7.fhir.uv.ips#1.1.0"
+          ],
+          "aliases": [],
+          "kind": "pinned",
+          "state": "ACTIVE",
+          "appliedRevision": 45,
+          "packages": 5,
+          "packageBytes": 51234567,
+          "lastUsed": 1761465600000,
+          "terminology": {
+            "mode": "server",
+            "server": "https://tx.fhir.org/r4"
+          }
+        }
+      ],
+      "privateContexts": {
+        "count": 1,
+        "states": {
+          "ACTIVE": 1,
+          "BUILDING": 0,
+          "STALE": 0,
+          "ABSENT": 0
+        }
+      }
+    }
+  },
+  "reasons": []
+}

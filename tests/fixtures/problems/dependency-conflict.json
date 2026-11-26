@@ -1,0 +1,16 @@
+{
+  "type": "https://nazrulworld.github.io/fhir-validation-service/problems/dependency-conflict",
+  "title": "Dependency conflict",
+  "status": 400,
+  "correlationId": "corr-0003",
+  "detail": "The two IGs need different versions of the same package",
+  "conflicts": [
+    {
+      "package": "hl7.fhir.r4.core",
+      "versions": {
+        "a.ig#1.0.0": "4.0.1",
+        "b.ig#2.0.0": "4.0.0"
+      }
+    }
+  ]
+}

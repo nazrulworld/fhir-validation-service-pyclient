@@ -1,0 +1,175 @@
+[build-system]
+requires = ["hatchling>=1.27", "hatch-vcs>=0.4"]
+build-backend = "hatchling.build"
+
+[project]
+name = "fvs_client"
+dynamic = ["version"]
+description = "Typed Python SDK (sync + async) for the FHIR Validation Service HTTP API."
+readme = "README.md"
+requires-python = ">=3.11"
+license = "Apache-2.0"
+license-files = ["LICENSE", "NOTICE"]
+authors = [{ name = "fvs_client contributors" }]
+keywords = ["fhir", "hl7", "validation", "healthcare", "sdk", "httpx", "async"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Healthcare Industry",
+    "License :: OSI Approved :: Apache Software License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Programming Language :: Python :: 3.15",
+    "Framework :: AnyIO",
+    "Topic :: Scientific/Engineering :: Medical Science Apps.",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Typing :: Typed",
+]
+dependencies = [
+    "httpx>=0.27,<1",
+    "anyio>=4.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/nazrulworld/fhir-validation-service-pyclient"
+Documentation = "https://nazrulworld.github.io/fhir-validation-service-pyclient/"
+Changelog = "https://github.com/nazrulworld/fhir-validation-service-pyclient/blob/main/CHANGELOG.md"
+"FHIR Validation Service" = "https://github.com/nazrulworld/fhir-validation-service"
+
+[dependency-groups]
+test = [
+    "pytest>=8.3",
+    "pytest-cov>=6.0",
+    "anyio[trio]>=4.0",
+    "openapi-core>=0.19",
+    "hypothesis>=6.100",
+    "pyyaml>=6.0",
+]
+lint = [
+    "ruff>=0.8",
+    "mypy>=1.13",
+    "pyright>=1.1.390",
+    "pre-commit>=4.0",
+    "pip-audit>=2.7",
+    "twine>=6.0",
+]
+docs = [
+    "mkdocs-material>=9.5",
+    "mkdocstrings[python]>=0.27",
+]
+dev = [
+    { include-group = "test" },
+    { include-group = "lint" },
+    { include-group = "docs" },
+]
+
+[tool.uv]
+default-groups = ["dev"]
+
+# ---------------------------------------------------------------- hatch
+[tool.hatch.version]
+source = "vcs"
+fallback-version = "0.0.0"
+
+[tool.hatch.version.raw-options]
+version_scheme = "guess-next-dev"
+local_scheme = "no-local-version"
+
+[tool.hatch.build.hooks.vcs]
+version-file = "src/fvs_client/_version.py"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/fvs_client"]
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "src/fvs_client",
+    "tests",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE",
+    "NOTICE",
+    "pyproject.toml",
+]
+
+# ---------------------------------------------------------------- ruff
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+src = ["src", "tests"]
+extend-exclude = ["src/fvs_client/_version.py", "specs"]
+
+[tool.ruff.lint]
+select = [
+    "E", "F", "W", "I", "UP", "B", "SIM", "RUF", "S", "D", "ANN", "PT", "ASYNC", "TRY", "PL",
+]
+ignore = [
+    "D105",    # magic-method docstrings
+    "D107",    # __init__ docstrings (documented on the class)
+    "TRY003",  # long messages in exception constructors are intentional (clear InputErrors)
+    "PLR0913", # SDK methods intentionally take many keyword-only options
+    "PLR2004", # HTTP status codes are self-explanatory magic values
+    "ANN401",  # JSON payloads are genuinely Any
+    "ASYNC109", # `timeout` is the httpx per-request timeout, not a cancellation deadline
+]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["S101", "S105", "S106", "D", "ANN", "PLR2004", "PLC0415", "TRY", "S311"]
+"scripts/**" = ["S", "D", "T201", "PLC0415"]
+
+# ---------------------------------------------------------------- typing
+[tool.mypy]
+strict = true
+python_version = "3.11"
+files = ["src", "tests"]
+exclude = ["src/fvs_client/_version\\.py"]
+
+[[tool.mypy.overrides]]
+module = ["openapi_core.*", "yaml.*", "fvs_client._version"]
+ignore_missing_imports = true
+
+[tool.pyright]
+# Strict for the shipped package (Constitution II); standard for tests, where pytest fixtures
+# make strict "unknown type" reporting noisy. mypy runs strict on both.
+typeCheckingMode = "standard"
+strict = ["src"]
+pythonVersion = "3.11"
+include = ["src", "tests"]
+exclude = ["src/fvs_client/_version.py", "**/__pycache__"]
+reportMissingTypeStubs = false
+
+# ---------------------------------------------------------------- pytest
+[tool.pytest.ini_options]
+minversion = "8.0"
+testpaths = ["tests"]
+markers = [
+    "integration: needs a running FHIR Validation Service (FVS_IT_BASE_URL)",
+    "perf: SDK overhead benchmarks (opt-in)",
+]
+addopts = "-ra --strict-markers -m 'not integration and not perf'"
+filterwarnings = ["error"]
+
+# ---------------------------------------------------------------- coverage
+[tool.coverage.run]
+branch = true
+source = ["fvs_client"]
+omit = ["*/fvs_client/_version.py"]
+
+[tool.coverage.report]
+fail_under = 90
+show_missing = true
+skip_covered = true
+exclude_also = [
+    "if TYPE_CHECKING:",
+    "@overload",
+    "raise NotImplementedError$",
+    "\\.\\.\\.$",
+]

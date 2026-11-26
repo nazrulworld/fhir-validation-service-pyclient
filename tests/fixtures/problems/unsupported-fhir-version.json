@@ -1,0 +1,7 @@
+{
+  "type": "https://nazrulworld.github.io/fhir-validation-service/problems/unsupported-fhir-version",
+  "title": "Unsupported FHIR version",
+  "status": 400,
+  "correlationId": "corr-0005",
+  "detail": "R6 is not a supported FHIR version"
+}
